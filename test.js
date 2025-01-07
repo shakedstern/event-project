@@ -2,20 +2,18 @@ const request = require('supertest');
 const { expect } = require('chai');
 const sinon = require('sinon');
 const mongoose = require('mongoose');
+const models = require('./models')
+const server = require('./api');
 
 describe('Event Routes (Unit Tests)', function () {
-    let app;
-    let Event;
+    let app = server.app;
+    let Event = models.Event;
     let findStub;
     let saveStub;
     let findByIdStub;
     let findByIdAndDeleteStub;
 
-    before(async function () {
-        const server = require('./api'); // Import inside before hook to ensure app setup
-        app = server.app;
-        Event = server.Event;
-    });
+
 
     beforeEach(function () {
         // Stub Mongoose methods before each test
